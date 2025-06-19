@@ -1,0 +1,66 @@
+Intro:
+We first display the run instructions to reproduce our results, then we provide a short description to each file and directory.
+------------------------------------------------------------------------------------------------------------------------------
+Run instructions:
+To get the results we based our report on, run the following files in order:
+- Database creation(only need to run once):
+    * database.py - creates segmented database, you can change embedding size and embedding layer.
+    * index_sets.py - split database into train, test and dev(validation), you can choose test and validation size.
+    * create_net_sets.py - converts the sets into numpy for easy usage with neural nets.
+
+-  Structural, pattern based analysis:
+    * filtering_new.py(to use neural net results run after running the neural net) - 
+        Produces all visualizations and analysis for the pattern based prediction, 
+        the embedding based prediction and combined scoring.
+
+- Neural net based prediction:
+    * scoring.py - runs neural net training, and produces accuracy report and loss progression.
+
+------------------------------------------------------------------------------------------------------------------------------
+Directories:
+- cache Directory:
+    cache of embedding for the database segments
+
+- data Directory:
+    contains the segmented data set(zps_segments.jsonl),
+    train, validation, test splits(splits is npz and zps_split is json)
+    pickle files for segment embedding and boundaries,
+    and network(neural_net) scores for use in filtering_new.py.
+
+- DB Directory:
+    contains the nesDB dataset(as provided in ex4).
+
+- results Directory:
+    contains all the plots, visualizations and output for our scoring and predictions.
+
+Files:
+- create_net_sets.py:
+    Converts the sets into numpy for easy usage with neural nets.
+- database.py:
+    Creates the segmented database
+- esm_embeddings.py:
+    As provided in ex4, provides embeddings based on esm pretrained model of various sizes.
+- filtering_new.py:
+    Produces all visualizations and analysis for the pattern based prediction, 
+    the embedding based prediction and combined scoring.
+- index_sets.py:
+    Splits database into train, test and dev(validation)
+- neural_net.py:
+    Our implementated neural net, together with the training function and scoring evaluation.
+- pep_utils.py:
+    Adjusted pep utils, used to load data matching to our database representation,
+    together with the functionality provided in ex4.
+- plot.py:
+    Helpers used to plot analysis in filtering_new.py.
+- scoring.py:
+    Trains the neural net, calculates test scores and saves them.
+- train_test_split.py:
+    Used to split the data segments based on protein ID.
+- zps.py:
+    Contains the functions for the segmentation logic.
+
+
+
+
+
+
