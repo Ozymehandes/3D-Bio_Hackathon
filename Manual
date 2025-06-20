@@ -12,9 +12,10 @@ To get the results we based our report on, run the following files in order:
     * scoring_and_analysis.py(to use neural net results run after running the neural net) - 
         Produces all visualizations and analysis for the pattern based prediction, 
         the embedding based prediction and combined scoring.
-        You can choose one of two run types:
-            1. include all data for analysis(contaminated data for neural network).
-            2. include only test(and validation) data for analysis(smaller database naturally).
+        includes all data for analysis(contaminated data for neural network).
+
+        You can change all of the hyperparameters(embedding size and layer, scoring functions weighting) and choose if to save the results.
+        Keep union_keys=True.
 
 - Neural net based prediction:
     * scoring.py - runs neural net training, and produces accuracy report and loss progression.
@@ -24,7 +25,7 @@ Directories:
 - cache Directory:
     cache of embedding for the database segments
 
-- data Directory: # Not uploaded due to git 
+- data Directory:
     contains the segmented data set(zps_segments.jsonl),
     train, validation, test splits(splits is npz and zps_split is json)
     pickle files for segment embedding and boundaries,

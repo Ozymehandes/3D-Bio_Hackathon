@@ -583,6 +583,13 @@ def generate_comprehensive_plots(consensus_scores, embedding_scores, neural_scor
     
     # Extract data for plotting
     segment_keys = [key for key, _, _ in ranked_segments]
+
+    if not union_keys:
+            common = (set(consensus_scores) 
+                    & set(embedding_scores) 
+                    & set(neural_scores))
+            segment_keys = [k for k in segment_keys if k in common]
+
     consensus_scores_aligned = [consensus_scores.get(key, {}).get('score', 0) for key in segment_keys]
     embedding_scores_aligned = [embedding_scores.get(key, 0) for key in segment_keys]
     neural_scores_aligned = [neural_scores.get(key, 0) for key in segment_keys]
@@ -891,7 +898,7 @@ def run_comprehensive_project4_pipeline(
     print(f"\n STEP 6: Combining scores and ranking segments...")
     ranked_segments = combine_scores_and_rank(
         consensus_results, embedding_scores, neural_net_scores,
-        consensus_weight=consensus_weight, embedding_weight=embedding_weight, neural_net_weight=neural_net_weight, union_keys=True
+        consensus_weight=consensus_weight, embedding_weight=embedding_weight, neural_net_weight=neural_net_weight, union_keys=union_keys
     )
     
     print(f" Ranked {len(ranked_segments)} segments")
@@ -1099,5 +1106,5 @@ if __name__ == "__main__":
         neural_net_weight=0.3,
         top_n_display=10,
         save_results=True,
-        union_keys=False
+        union_keys=True
     )
