@@ -46,12 +46,20 @@ keys_test = test["keys"]
 for i in np.argsort(-probs_test)[:5]:
     print(f"{keys_test[i]}: {probs_test[i]:.3f}  label={test['y'][i]}")
 
-all_logits = get_net_scores(trained_network, np.concatenate([val["X"], test["X"]]))
+# Save the trained network scores
+all_logits = get_net_scores(trained_network, np.concatenate([train["X"], val["X"], test["X"]]))
 network_scores = {}
-for k, v in zip(np.concatenate([val["keys"], test["keys"]]), all_logits):
+for k, v in zip(np.concatenate([train["keys"], val["keys"], test["keys"]]), all_logits):
     network_scores[k] = v
 
 import pickle
-with open("data/network_scores.pkl", "wb") as f:
+with open("data/network_all_scores.pkl", "wb") as f:
     pickle.dump(network_scores, f)
-    
+
+test_logits = get_net_scores(trained_network, np.concatenate([val["X"], test["X"]]))
+test_scores = {}
+for k, v in zip(np.concatenate([val["keys"], test["keys"]]), test_logits):
+    test_scores[k] = v
+
+with open("data/network_test_scores.pkl", "wb") as f:
+    pickle.dump(test_scores, f)
