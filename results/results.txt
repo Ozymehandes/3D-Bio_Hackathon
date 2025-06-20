@@ -1,0 +1,356 @@
+================================================================================
+PROJECT 4: COMPREHENSIVE NES DETECTION PIPELINE
+================================================================================
+
+ STEP 1: Loading data...
+ESM model loaded to cpu
+Loaded true labels for 4346 segments
+ Loaded 270 proteins with segment boundaries
+ Loaded 4346 segment embeddings
+ Loaded 270 protein sequences
+ Generated 330 positive reference embeddings
+ Generated 330 negative reference embeddings
+
+ STEP 2: Filtering segments by length (8-25 amino acids)...
+ Segments before filtering: 4346
+ Segments after filtering: 850
+ Filtering efficiency: 19.6%
+
+ STEP 3: Scoring segments with NES consensus patterns...
+ Scored 850 segments
+ Score range: 0.0 - 88.0
+ Average score: 2.95
+
+ Top 5 consensus pattern matches:
+  1. CAH9 411-433
+     Sequence: AGDILALVFGLLFAVTSVAFLV
+     Score: 88
+     Patterns: Kosugi_1a@3, Kosugi_1a@10, Kosugi_1b@0, Kosugi_1b@4, Kosugi_1b@11...
+  2. TR10B 34-52
+     Sequence: PKTLVLVVAAVLLLVSAE
+     Score: 77
+     Patterns: Kosugi_1a@3, Kosugi_1a@4, Kosugi_1a@5, Kosugi_1b@4, Kosugi_1b@5...
+  3. VP16 221-239
+     Sequence: LARVLFLHLYLFLTREIL
+     Score: 39
+     Patterns: Kosugi_1a@1, Kosugi_1b@0, Kosugi_1c@0, Kosugi_1d@1, Kosugi_1d@3...
+  4. NIRA 501-522
+     Sequence: QALLMHMFYQLLLIHLYRPFL
+     Score: 39
+     Patterns: Kosugi_1a@3, Kosugi_1a@6, Kosugi_1b@4, Kosugi_1b@7, Kosugi_1c@2...
+  5. PLCD1 685-704
+     Sequence: MEFEFEVTVPDLALVRFMV
+     Score: 39
+     Patterns: Kosugi_1a@4, Kosugi_1a@7, Kosugi_1b@8, Kosugi_1c@8, Kosugi_1d@4...
+
+ STEP 4: Scoring segments with embedding similarity...
+ Scored 850 segments with embedding similarity
+ Score range: -0.014 - 0.047
+ Average score: 0.013
+
+ Top 5 embedding similarity matches:
+  1. PCNT 2063-2084
+     Sequence: VDLVAQVKQLQEKLNRLLYSM
+     Embedding score: 0.0471
+  2. IPKA 26-49
+     Sequence: LVSSASGNSNELALKLAGLDINK
+     Embedding score: 0.0471
+  3. TFEB 153-174
+     Sequence: ERELDDVIDNIMRLDDVLGYI
+     Embedding score: 0.0465
+  4. Q0PLR1 0-15
+     Sequence: MSLFGDTIAYLLSLI
+     Embedding score: 0.0464
+  5. SPC72 331-351
+     Sequence: LNEQSHLLDSLELEENSSSV
+     Embedding score: 0.0454
+
+ STEP 5: Scoring segments with neural network classification...
+ Scored 848 segments
+ Score range: -34.957 - 22.597
+ Average score: -11.465
+
+ Top 5 neural net:
+  1. HXK4 286-306
+     Sequence: QLYEKLIGGKYMGELVRLVL
+     Neural Network Score: 22.5971
+  2. IPKA 26-49
+     Sequence: LVSSASGNSNELALKLAGLDINK
+     Neural Network Score: 17.5418
+  3. CCNB1 138-162
+     Sequence: EEDLCQAFSDVILAVNDVDAEDGA
+     Neural Network Score: 16.0467
+  4. CD5R1 223-245
+     Sequence: AVLLTCLYLSYSYMGNEISYPL
+     Neural Network Score: 15.4042
+  5. ELK3 0-16
+     Sequence: MESAITLWQFLLQLLL
+     Neural Network Score: 14.7438
+
+ STEP 6: Combining scores and ranking segments...
+ Ranked 850 segments
+ Weighting: 0.6 consensus + 0.4 embedding + 0.3 neural
+
+ STEP 7: TOP 10 NES CANDIDATES
+================================================================================
+
+RANK #1: CAH9 411-433
+Sequence: AGDILALVFGLLFAVTSVAFLV
+Length: 22 amino acids
+Combined Score: 0.9517
+  • Consensus Score: 88 (patterns: 42)
+  • Embedding Score: 0.0024
+  • Neural Network Score: 12.1834
+  • Pattern Matches: Kosugi_1a@3, Kosugi_1a@10, Kosugi_1b@0...
+------------------------------------------------------------
+
+RANK #2: TR10B 34-52
+Sequence: PKTLVLVVAAVLLLVSAE
+Length: 18 amino acids
+Combined Score: 0.8645
+  • Consensus Score: 77 (patterns: 35)
+  • Embedding Score: 0.0182
+  • Neural Network Score: -10.0640
+  • Pattern Matches: Kosugi_1a@3, Kosugi_1a@4, Kosugi_1a@5...
+------------------------------------------------------------
+
+RANK #3: IPKA 26-49
+Sequence: LVSSASGNSNELALKLAGLDINK
+Length: 23 amino acids
+Combined Score: 0.7687
+  • Consensus Score: 14 (patterns: 6)
+  • Embedding Score: 0.0471
+  • Neural Network Score: 17.5418
+  • Pattern Matches: Kosugi_1a@11, Kosugi_1b@12, Kosugi_2@13...
+------------------------------------------------------------
+
+RANK #4: VP16 221-239
+Sequence: LARVLFLHLYLFLTREIL
+Length: 18 amino acids
+Combined Score: 0.7432
+  • Consensus Score: 39 (patterns: 18)
+  • Embedding Score: 0.0342
+  • Neural Network Score: -3.7642
+  • Pattern Matches: Kosugi_1a@1, Kosugi_1b@0, Kosugi_1c@0...
+------------------------------------------------------------
+
+RANK #5: CPEB1 195-217
+Sequence: DHLSDLISSLRISPPLPFLSLS
+Length: 22 amino acids
+Combined Score: 0.6940
+  • Consensus Score: 16 (patterns: 6)
+  • Embedding Score: 0.0404
+  • Neural Network Score: 8.9953
+  • Pattern Matches: Kosugi_1a@2, Kosugi_1a@11, Kosugi_1d@2...
+------------------------------------------------------------
+
+RANK #6: pUL37 1018-1040
+Sequence: LAVTLSMDWLLMNELLRVTDGV
+Length: 22 amino acids
+Combined Score: 0.6821
+  • Consensus Score: 28 (patterns: 14)
+  • Embedding Score: 0.0367
+  • Neural Network Score: -4.2997
+  • Pattern Matches: Kosugi_1a@2, Kosugi_1b@3, Kosugi_2@4...
+------------------------------------------------------------
+
+RANK #7: Q0PLR1 0-15
+Sequence: MSLFGDTIAYLLSLI
+Length: 15 amino acids
+Combined Score: 0.6727
+  • Consensus Score: 15 (patterns: 5)
+  • Embedding Score: 0.0464
+  • Neural Network Score: -1.3018
+  • Pattern Matches: Kosugi_1c@3, Kosugi_2@6, Kosugi_1c_rev@0...
+------------------------------------------------------------
+
+RANK #8: GEN1 659-681
+Sequence: LLSGITDLCLQDLPLKERIFTK
+Length: 22 amino acids
+Combined Score: 0.6615
+  • Consensus Score: 16 (patterns: 5)
+  • Embedding Score: 0.0357
+  • Neural Network Score: 8.6847
+  • Pattern Matches: Kosugi_1a@0, Kosugi_1a@5, Kosugi_1b@1...
+------------------------------------------------------------
+
+RANK #9: Huntingtin 2498-2517
+Sequence: QINVLAVQAITSLVLSAMT
+Length: 19 amino acids
+Combined Score: 0.6523
+  • Consensus Score: 26 (patterns: 13)
+  • Embedding Score: 0.0299
+  • Neural Network Score: 1.1364
+  • Pattern Matches: Kosugi_1a@5, Kosugi_1b@6, Kosugi_1c@4...
+------------------------------------------------------------
+
+RANK #10: ZCCHV 406-424
+Sequence: FTANDLENLLLLNDTWKN
+Length: 18 amino acids
+Combined Score: 0.6483
+  • Consensus Score: 15 (patterns: 5)
+  • Embedding Score: 0.0393
+  • Neural Network Score: 2.8888
+  • Pattern Matches: Kosugi_1a@1, Kosugi_1b@2, Kosugi_1c@1...
+------------------------------------------------------------
+
+ STEP 8: Accuracy Evaluation
+==================================================
+
+Evaluating accuracy on 850 segments with ground truth labels...
+Optimizing thresholds for: f1
+
+1. Finding optimal threshold for consensus scoring...
+
+2. Finding optimal threshold for embedding scoring...
+
+2. Finding optimal threshold for neural scoring...
+
+3. Finding optimal threshold for combined scoring...
+
+================================================================================
+OPTIMAL THRESHOLD EVALUATION RESULTS
+================================================================================
+Optimization metric: f1
+Dataset: 850 segments
+
+CONSENSUS SCORING:
+  Optimal Threshold: 6.2222
+  Optimized f1: 0.2558
+  Final Metrics:
+    Accuracy:  0.8494
+    Precision: 0.1654
+    Recall:    0.5641
+    F1-Score:  0.2558
+    ROC AUC:   0.7808
+  All Optimal Thresholds:
+    accuracy: 77.3333 (score: 0.9553)
+    precision: 77.3333 (score: 1.0000)
+    recall: 0.0000 (score: 1.0000)
+    f1: 6.2222 (score: 0.2558)
+
+EMBEDDING SCORING:
+  Optimal Threshold: 0.0324
+  Optimized f1: 0.3000
+  Final Metrics:
+    Accuracy:  0.9341
+    Precision: 0.2927
+    Recall:    0.3077
+    F1-Score:  0.3000
+    ROC AUC:   0.6910
+  All Optimal Thresholds:
+    accuracy: 0.0465 (score: 0.9529)
+    precision: 0.0385 (score: 0.3529)
+    recall: -0.0137 (score: 1.0000)
+    f1: 0.0324 (score: 0.3000)
+
+NEURAL SCORING:
+  Optimal Threshold: 6.9006
+  Optimized f1: 0.8056
+  Final Metrics:
+    Accuracy:  0.9835
+    Precision: 0.8788
+    Recall:    0.7436
+    F1-Score:  0.8056
+    ROC AUC:   0.9703
+  All Optimal Thresholds:
+    accuracy: 6.9006 (score: 0.9835)
+    precision: 10.3887 (score: 1.0000)
+    recall: -34.9568 (score: 1.0000)
+    f1: 6.9006 (score: 0.8056)
+
+COMBINED SCORING:
+  Optimal Threshold: 0.5213
+  Optimized f1: 0.4810
+  Final Metrics:
+    Accuracy:  0.9518
+    Precision: 0.4750
+    Recall:    0.4872
+    F1-Score:  0.4810
+    ROC AUC:   0.9178
+  All Optimal Thresholds:
+    accuracy: 0.6074 (score: 0.9576)
+    precision: 0.8656 (score: 1.0000)
+    recall: 0.0996 (score: 1.0000)
+    f1: 0.5213 (score: 0.4810)
+
+CONSENSUS SCORING:
+  Accuracy:  0.8494
+  Precision: 0.1654
+  Recall:    0.5641
+  F1-Score:  0.2558
+  ROC AUC:   0.7808
+
+EMBEDDING SCORING:
+  Accuracy:  0.9341
+  Precision: 0.2927
+  Recall:    0.3077
+  F1-Score:  0.3000
+  ROC AUC:   0.6910
+
+NEURAL SCORING:
+  Accuracy:  0.9835
+  Precision: 0.8788
+  Recall:    0.7436
+  F1-Score:  0.8056
+  ROC AUC:   0.9703
+
+COMBINED SCORING:
+  Accuracy:  0.9518
+  Precision: 0.4750
+  Recall:    0.4872
+  F1-Score:  0.4810
+  ROC AUC:   0.9178
+
+ STEP 9: Generating individual ROC curves
+AUC: 0.7807550033197382
+ Consensus ROC curve saved
+AUC: 0.6910430301305763
+ Embedding ROC curve saved
+AUC: 0.9702804388377755
+ Neural ROC curve saved
+AUC: 0.9177653419330362
+ Combined ROC curve saved
+
+ STEP 10: Generating comprehensive analysis plots...
+ Comprehensive analysis plots saved
+
+ STEP 11: Summary Statistics
+==================================================
+Combined Scores:
+  Range: 0.0996 - 0.9517
+  Mean: 0.3204
+  Std: 0.1074
+
+Consensus Scores:
+  Range: 0 - 88
+  Mean: 2.95
+
+Embedding Scores:
+  Range: -0.0137 - 0.0471
+  Mean: 0.0133
+
+Neural Network Scores:
+  Range: -34.9568 - 22.5971
+  Mean: -11.4384
+
+Top Pattern Matches:
+  Kosugi_2_rev: 94 matches
+  Kosugi_1b: 93 matches
+  Kosugi_1a: 90 matches
+  Kosugi_1d_rev: 89 matches
+  Kosugi_3_rev: 89 matches
+
+ Saving results...
+ Results saved to 'project4_nes_candidates.csv'
+ Accuracy results saved to 'project4_accuracy_results.csv'
+
+================================================================================
+ PROJECT 4 COMPREHENSIVE PIPELINE COMPLETED SUCCESSFULLY!
+================================================================================
+ Top NES candidate: CAH9 411-433
+ Sequence: AGDILALVFGLLFAVTSVAFLV
+ Combined score: 0.9517
+ Results saved to: project4_nes_candidates.csv
+ Plots saved with prefix: project4_
+ Best performing method: neural (AUC = 0.9703)
