@@ -8,7 +8,7 @@ To get the results we based our report on, run the following files in order:
     * index_sets.py - split database into train, test and dev(validation), you can choose test and validation size.
     * create_net_sets.py - converts the sets into numpy for easy usage with neural nets.
 
--  Structural, pattern based analysis:
+-  Structural, pattern based scoring and full analysis:
     * scoring_and_analysis.py(to use neural net results run after running the neural net) - 
         Produces all visualizations and analysis for the pattern based prediction, 
         the embedding based prediction and combined scoring.
@@ -24,7 +24,7 @@ Directories:
 - cache Directory:
     cache of embedding for the database segments
 
-- data Directory:
+- data Directory: # Not uploaded due to git 
     contains the segmented data set(zps_segments.jsonl),
     train, validation, test splits(splits is npz and zps_split is json)
     pickle files for segment embedding and boundaries,
